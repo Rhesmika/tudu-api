@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Task
 from .serializers import TaskSerializer
+from tudu_api.permissions import IsOwnerOrReadOnly
+
 
 
 class TaskList(APIView):
@@ -32,6 +34,8 @@ class TaskList(APIView):
 
 
 class TaskDetail(APIView):
+    serializer_class = TaskSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
         try:
@@ -45,3 +49,15 @@ class TaskDetail(APIView):
         task = self.get_object(pk)
         serializer = TaskSerializer(task, context={'request': request})
         return Response(serializer.data)
+
+    def put(self, request, pk):
+        task = self.get_object(pk)
+        serializer = TaskSerializer(
+            task, data=request.data, context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )
