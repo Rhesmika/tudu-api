@@ -13,3 +13,21 @@ class TaskList(APIView):
         return Response(serializer.data)
 
 
+class TaskDetail(APIView):
+    serializer_class = TaskSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+
+    def get_object(self, pk):
+        try:
+            task = Task.objects.get(pk=pk)
+            self.check_object_permissions(self.request, task)
+            return task
+        except Task.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        task = self.get_object(pk)
+        serializer = TaskSerializer(task, context={'request': request})
+        return Response(serializer.data)
+
+
