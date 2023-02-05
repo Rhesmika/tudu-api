@@ -1,9 +1,10 @@
-from django.http import Http404
-from rest_framework.views import APIView
+from rest_framework import status, permissions
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from .models import Profile
 from .serializers import ProfileSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
+
 
 
 class ProfileList(APIView):
@@ -32,8 +33,12 @@ class ProfileDetail(APIView):
 
     def put(self, request, pk):
         profile = self.get_object(pk)
-        serializer = ProfileSerializer(profile, data=request.data, context={'request': request})
+        serializer = ProfileSerializer(
+            profile, data=request.data, context={'request': request}
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )
