@@ -15,13 +15,18 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Profile',
+            name='Task',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('image', models.ImageField(default='../default_user_zaxugw.png', upload_to='images/')),
-                ('owner', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('title', models.CharField(max_length=100)),
+                ('description', models.TextField(blank=True, max_length=500)),
+                ('attachment', models.FileField(blank=True, null=True, upload_to='')),
+                ('duedate', models.DateField(blank=True, null=True)),
+                ('priority', models.IntegerField(choices=[(0, 'Low'), (1, 'Medium'), (2, 'High')], default=1)),
+                ('status', models.IntegerField(choices=[(0, 'To Do'), (1, 'In Progress'), (2, 'Complete')], default=0)),
+                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['-created_at'],
