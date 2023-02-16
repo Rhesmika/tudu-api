@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from .models import Task
 from .serializers import TaskSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
+from django.http import Http404
 
 
 class TaskList(APIView):

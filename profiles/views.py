@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from .models import Profile
 from .serializers import ProfileSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
-
+from django.http import Http404
 
 
 class ProfileList(APIView):

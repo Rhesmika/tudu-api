@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from .models import Team
 from .serializers import TeamSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
+from django.http import Http404
 
 
 class TeamList(APIView):
