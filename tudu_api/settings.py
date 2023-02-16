@@ -36,7 +36,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = ['https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu85.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu87.gitpod.io']
 
 
 # Application definition

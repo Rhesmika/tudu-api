@@ -3,6 +3,7 @@ from tasks.models import Task
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
 

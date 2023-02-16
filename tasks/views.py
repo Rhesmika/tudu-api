@@ -6,12 +6,12 @@ from .serializers import TaskSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
 
 
-
 class TaskList(APIView):
     serializer_class = TaskSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
+    
     def get(self, request):
         tasks = Task.objects.all()
         serializer = TaskSerializer(
