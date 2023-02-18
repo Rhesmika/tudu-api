@@ -1,3 +1,4 @@
+from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Team
@@ -7,10 +8,27 @@ from django.http import Http404
 
 
 class TeamList(APIView):
+    serializer_class = TeamSerializer
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly
+    ]
     def get(self, request):
         teams = Team.objects.all()
         serializer = TeamSerializer(teams, many=True, context={'request': request})
         return Response(serializer.data)
+
+    def post(self, request):
+        serializer = TeamSerializer(
+            data=request.data, context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save(owner=request.user)
+            return Response(
+                serializer.data, status=status.HTTP_201_CREATED
+            )
+        return Response(
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )
 
 
 class TeamDetail(APIView):
@@ -29,15 +47,3 @@ class TeamDetail(APIView):
         team = self.get_object(pk)
         serializer = TeamSerializer(team, context={'request': request})
         return Response(serializer.data)
-
-    def put(self, request, pk):
-        team = self.get_object(pk)
-        serializer = TeamSerializer()(
-            task, data=request.data, context={'request': request}
-        )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(
-            serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
