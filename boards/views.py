@@ -32,3 +32,39 @@ class BoardList(APIView):
         return Response(
             serializer.errors, status=status.HTTP_400_BAD_REQUEST
         )
+
+class BoardDetail(APIView):
+    serializer_class = BoardSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+
+    def get_object(self, pk):
+        try:
+            board = Board.objects.get(pk=pk)
+            self.check_object_permissions(self.request, board)
+            return board
+        except Board.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        board = self.get_object(pk)
+        serializer = BoardSerializer(board, context={'request': request})
+        return Response(serializer.data)
+
+    # def put(self, request, pk):
+    #     task = self.get_object(pk)
+    #     serializer = TaskSerializer(
+    #         task, data=request.data, context={'request': request}
+    #     )
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     return Response(
+    #         serializer.errors, status=status.HTTP_400_BAD_REQUEST
+    #     )
+
+    # def delete(self, request, pk):
+    #     task = self.get_object(pk)
+    #     task.delete()
+    #     return Response(
+    #         status=status.HTTP_204_NO_CONTENT
+    #     )
