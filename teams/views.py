@@ -32,7 +32,7 @@ class TeamList(APIView):
 
 
 class TeamDetail(APIView):
-    serializer_class = TeamSerializer()
+    serializer_class = TeamSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
@@ -47,3 +47,15 @@ class TeamDetail(APIView):
         team = self.get_object(pk)
         serializer = TeamSerializer(team, context={'request': request})
         return Response(serializer.data)
+
+    def put(self, request, pk):
+        team = self.get_object(pk)
+        serializer = TeamSerializer(
+            team, data=request.data, context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )
