@@ -7,6 +7,7 @@ PRIORITY = ((0, 'Low'), (1, 'Medium'), (2, 'High'))
 
 
 class Task(models.Model):
+    # board = models.ForeignKey("boards.Board", on_delete=models.CASCADE, related_name='boards')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -16,6 +17,7 @@ class Task(models.Model):
     duedate = models.DateField(null=True, blank=True)
     priority = models.IntegerField(choices=PRIORITY, default=1)
     status = models.IntegerField(choices=STATUS, default=0)
+
 
     class Meta:
         ordering = ['-created_at']
