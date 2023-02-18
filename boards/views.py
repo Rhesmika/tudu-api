@@ -3,14 +3,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Board
 from .serializers import BoardSerializer
-from tudu_api.permissions import IsOwnerOrReadOnly
+from tudu_api.permissions import IsOwnerOrReadOnly, IsAuthenticated
 from django.http import Http404
 
 
 class BoardList(APIView):
     serializer_class = BoardSerializer
     permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
+        permissions.IsAuthenticated
     ]
     
     def get(self, request):
@@ -35,8 +35,10 @@ class BoardList(APIView):
 
 class BoardDetail(APIView):
     serializer_class = BoardSerializer
-    permission_classes = [IsOwnerOrReadOnly]
-
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    
     def get_object(self, pk):
         try:
             board = Board.objects.get(pk=pk)

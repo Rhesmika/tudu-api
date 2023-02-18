@@ -3,14 +3,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Task
 from .serializers import TaskSerializer
-from tudu_api.permissions import IsOwnerOrReadOnly
+from tudu_api.permissions import IsOwnerOrReadOnly, IsAuthenticated
 from django.http import Http404
 
 
 class TaskList(APIView):
     serializer_class = TaskSerializer
     permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
+        permissions.IsAuthenticated
     ]
     
     def get(self, request):
@@ -36,8 +36,9 @@ class TaskList(APIView):
 
 class TaskDetail(APIView):
     serializer_class = TaskSerializer
-    permission_classes = [IsOwnerOrReadOnly]
-
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
     def get_object(self, pk):
         try:
             task = Task.objects.get(pk=pk)
