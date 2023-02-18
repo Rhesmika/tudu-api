@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Board
 from .serializers import BoardSerializer
+from tudu_api.permissions import IsOwnerOrReadOnly
+from django.http import Http404
 
 
 class BoardList(APIView):
