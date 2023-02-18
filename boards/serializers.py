@@ -7,5 +7,5 @@ class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = [
-            'name', 'created_at'
+            'name', 'created_at', 'id'
         ]

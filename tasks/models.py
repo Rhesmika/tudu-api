@@ -1,13 +1,14 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from boards.models import Board
 
 STATUS = ((0, 'To Do'), (1, 'In Progress'), (2, 'Complete'))
 PRIORITY = ((0, 'Low'), (1, 'Medium'), (2, 'High'))
 
 
 class Task(models.Model):
-    # board = models.ForeignKey("boards.Board", on_delete=models.CASCADE, related_name='boards')
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='tasks', default=1)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
