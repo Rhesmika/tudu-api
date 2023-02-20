@@ -1,4 +1,4 @@
-from rest_framework import status, permissions
+from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Team
@@ -7,28 +7,13 @@ from tudu_api.permissions import IsOwnerOrReadOnly
 from django.http import Http404
 
 
-class TeamList(APIView):
+class TeamList(generics.ListCreateAPIView):
     serializer_class = TeamSerializer
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
-    ]
-    def get(self, request):
-        teams = Team.objects.all()
-        serializer = TeamSerializer(teams, many=True, context={'request': request})
-        return Response(serializer.data)
+    queryset = Team.objects.all()
 
-    def post(self, request):
-        serializer = TeamSerializer(
-            data=request.data, context={'request': request}
-        )
-        if serializer.is_valid():
-            serializer.save(owner=request.user)
-            return Response(
-                serializer.data, status=status.HTTP_201_CREATED
-            )
-        return Response(
-            serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+        return Response(serializer.data)
 
 
 class TeamDetail(APIView):
@@ -59,6 +44,7 @@ class TeamDetail(APIView):
         return Response(
             serializer.errors, status=status.HTTP_400_BAD_REQUEST
         )
+
     def delete(self, request, pk):
         team = self.get_object(pk)
         team.delete()

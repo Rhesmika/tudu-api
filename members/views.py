@@ -4,17 +4,17 @@ from rest_framework.views import APIView
 from .models import Member
 from .serializers import MemberSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly, IsAuthenticated
+from django.db.models import Count
 
 
 class MemberList(generics.ListCreateAPIView):
     serializer_class = MemberSerializer
     queryset = Member.objects.all()
 
-
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-        
         return Response(serializer.data)
+
 
 class MemberDetail(APIView):
 
@@ -35,7 +35,7 @@ class MemberDetail(APIView):
         member = self.get_object(pk)
         serializer = MemberSerializer(member, context={'request': request})
         return Response(serializer.data)
-    
+
     def put(self, request, pk):
         member = self.get_object(pk)
         serializer = MemberSerializer()(

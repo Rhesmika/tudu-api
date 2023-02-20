@@ -8,11 +8,13 @@ class TeamSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     is_owner = serializers.SerializerMethodField()
+
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
 
     member_id = serializers.SerializerMethodField()
+
     def get_member_id(self, obj):
         user = self.context['request'].user
         if user.is_authenticated:
@@ -21,8 +23,6 @@ class TeamSerializer(serializers.ModelSerializer):
             ).first()
             return member.id if member else None
         return None
-
-
 
     class Meta:
         model = Team
