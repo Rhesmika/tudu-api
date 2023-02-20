@@ -5,15 +5,14 @@ from .serializers import TaskSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
 
 
-
 class TaskList(generics.ListCreateAPIView):
     """
     Lists tasks or create a task if logged in
     The perform_create method associates the task with the logged in user.
     """
+
     serializer_class = TaskSerializer
-    queryset = Task.objects.all(
-    ).order_by('-created_at')
+    queryset = Task.objects.all().order_by("-created_at")
     serializer_class = TaskSerializer
 
     filter_backends = [
@@ -23,20 +22,19 @@ class TaskList(generics.ListCreateAPIView):
     ]
 
     filterset_fields = [
-        'board',
-        'board__team',
-        'priority',
-        'status',
-
+        "board",
+        "board__team",
+        "priority",
+        "status",
     ]
     search_fields = [
-        'title',
+        "title",
     ]
     ordering_fields = [
-        'priority',
-        'status',
-        'duedate',
-        'title',
+        "priority",
+        "status",
+        "duedate",
+        "title",
     ]
 
     def perform_create(self, serializer):
@@ -47,6 +45,7 @@ class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve a task and edit or delete it if you own it.
     """
+
     serializer_class = TaskSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Task.objects.all()

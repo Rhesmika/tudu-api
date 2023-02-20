@@ -10,12 +10,11 @@ class TeamList(generics.ListCreateAPIView):
     Lists teams or create a team if logged in
     The perform_create method associates the team with the logged in user.
     """
+
     serializer_class = TeamSerializer
     queryset = Team.objects.annotate(
-        member_count=Count('membership__owner', distinct=True),
-        task_count=Count('board__tasks', distinct=True),
-
-    ).order_by('-created_at')
+        task_count=Count("board__tasks", distinct=True),
+    ).order_by("-created_at")
     serializer_class = TeamSerializer
 
     filter_backends = [
@@ -23,12 +22,10 @@ class TeamList(generics.ListCreateAPIView):
         filters.SearchFilter,
     ]
     search_fields = [
-        'name',
-        'board__name',
+        "name",
+        "board__name",
     ]
-    ordering_fields = [
-        'name'
-    ]
+    ordering_fields = ["name"]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -39,9 +36,9 @@ class TeamDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve a team and edit or delete it if you own it.
     """
+
     serializer_class = TeamSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Team.objects.annotate(
-        member_count=Count('membership__owner', distinct=True),
-        task_count=Count('board__tasks', distinct=True),
-    ).order_by('-created_at')
+        task_count=Count("board__tasks", distinct=True),
+    ).order_by("-created_at")

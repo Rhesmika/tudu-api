@@ -10,10 +10,11 @@ class BoardList(generics.ListCreateAPIView):
     List boards or create a post if logged in
     The perform_create method associates the board with the logged in user.
     """
+
     serializer_class = BoardSerializer
     queryset = Board.objects.annotate(
-        task_count=Count('tasks', distinct=True),
-    ).order_by('-created_at')
+        task_count=Count("tasks", distinct=True),
+    ).order_by("-created_at")
     serializer_class = BoardSerializer
 
     filter_backends = [
@@ -21,13 +22,12 @@ class BoardList(generics.ListCreateAPIView):
         filters.SearchFilter,
     ]
     search_fields = [
-        'name',
-        'tasks__title',
+        "name",
+        "tasks__title",
     ]
     ordering_fields = [
-        'task_count',
-        'task__title',
-
+        "task_count",
+        "task__title",
     ]
 
     def perform_create(self, serializer):
@@ -38,8 +38,9 @@ class BoardDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve a board and edit or delete it if you own it.
     """
+
     serializer_class = BoardSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Board.objects.annotate(
-        task_count=Count('tasks', distinct=True),
-    ).order_by('-created_at')
+        task_count=Count("tasks", distinct=True),
+    ).order_by("-created_at")
