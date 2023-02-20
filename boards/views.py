@@ -1,4 +1,5 @@
-from rest_framework import permissions, generics
+from django.db.models import Count
+from rest_framework import permissions, generics, filters
 from tudu_api.permissions import IsOwnerOrReadOnly
 from .models import Board
 from .serializers import BoardSerializer
@@ -10,7 +11,10 @@ class BoardList(generics.ListCreateAPIView):
     The perform_create method associates the board with the logged in user.
     """
     serializer_class = BoardSerializer
-    queryset = Board.objects.all()
+    queryset = Board.objects.annotate(
+        task_count=Count('tasks')
+    ).order_by('-created_at')
+    serializer_class = BoardSerializer
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

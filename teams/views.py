@@ -12,7 +12,9 @@ class TeamList(generics.ListCreateAPIView):
     """
     serializer_class = TeamSerializer
     queryset = Team.objects.annotate(
-        member_count=Count('membership__owner')
+        member_count=Count('membership__owner', distinct=True),
+        task_count=Count('board__tasks', distinct=True),
+
     ).order_by('-created_at')
     serializer_class = TeamSerializer
 

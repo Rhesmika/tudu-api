@@ -7,6 +7,8 @@ class TeamSerializer(serializers.ModelSerializer):
 
     owner = serializers.ReadOnlyField(source='owner.username')
     member_count = serializers.ReadOnlyField()
+    task_count = serializers.ReadOnlyField()
+
 
     is_owner = serializers.SerializerMethodField()
 
@@ -28,5 +30,5 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = [
-            'id', 'created_at', 'name', 'description', 'image', 'owner', 'is_owner', 'member_id','member_count'
+            'id', 'created_at', 'name', 'description', 'image', 'owner', 'is_owner', 'member_id', 'member_count', 'task_count'
         ]
