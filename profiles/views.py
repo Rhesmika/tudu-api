@@ -18,8 +18,7 @@ class ProfileList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter
     ]
-    ordering_fields = [
-        'owns_teams',
+    ordering_fields = [        
     ]
 
 
@@ -33,4 +32,6 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.annotate(
+        owns_teams=Count('owner__team')
+    ).order_by('-created_at')

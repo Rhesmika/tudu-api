@@ -34,4 +34,6 @@ class BoardDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = BoardSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Board.objects.all()
+    queryset = Board.objects.annotate(
+        task_count=Count('tasks', distinct=True),
+    ).order_by('-created_at')

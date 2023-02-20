@@ -10,9 +10,7 @@ class TaskList(generics.ListCreateAPIView):
     The perform_create method associates the task with the logged in user.
     """
     serializer_class = TaskSerializer
-    queryset = Task.objects.annotate(
-        
-        # task_count=Count('tasks', distinct=True),
+    queryset = Task.objects.all(
     ).order_by('-created_at')
     serializer_class = TaskSerializer
 

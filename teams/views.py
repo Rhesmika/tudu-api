@@ -22,6 +22,7 @@ class TeamList(generics.ListCreateAPIView):
         filters.OrderingFilter
     ]
     ordering_fields = [
+        'name'
     ]
 
     def perform_create(self, serializer):
@@ -35,4 +36,7 @@ class TeamDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = TeamSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Team.objects.all()
+    queryset = Team.objects.annotate(
+        member_count=Count('membership__owner', distinct=True),
+        task_count=Count('board__tasks', distinct=True),
+    ).order_by('-created_at')
