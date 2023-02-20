@@ -1,4 +1,5 @@
-from rest_framework import permissions, generics
+from django.db.models import Count
+from rest_framework import permissions, generics, filters
 from .models import Team
 from .serializers import TeamSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
@@ -6,11 +7,20 @@ from tudu_api.permissions import IsOwnerOrReadOnly
 
 class TeamList(generics.ListCreateAPIView):
     """
-    Lists eteams or create a team if logged in
+    Lists teams or create a team if logged in
     The perform_create method associates the team with the logged in user.
     """
     serializer_class = TeamSerializer
-    queryset = Team.objects.all()
+    queryset = Team.objects.annotate(
+        member_count=Count('membership__owner')
+    ).order_by('-created_at')
+    serializer_class = TeamSerializer
+
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
