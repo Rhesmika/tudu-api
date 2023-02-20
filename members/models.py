@@ -2,8 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from teams.models import Team
 
-STATUS = ((0, 'null'), (1, 'Requested'), (2, 'Accepted'),  (2, 'Declined'))
-
+STATUS = (0, 'Requested'), (1, 'Accepted'), (2, 'Declined'),
 class Member(models.Model):
 
     owner = models.ForeignKey(
