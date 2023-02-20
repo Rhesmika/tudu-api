@@ -21,7 +21,7 @@ class ProfileList(generics.ListCreateAPIView):
         filters.SearchFilter,
     ]
     search_fields = [
-        'owner__username',
+        "owner__username",
     ]
     ordering_fields = [
         "owner",

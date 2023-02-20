@@ -3,14 +3,12 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from boards.models import Board
 
-STATUS = ((0, "To Do"), (1, "In Progress"), (2, "Complete"))
-PRIORITY = ((0, "Low"), (1, "Medium"), (2, "High"))
+STATUS = ((0, 'To Do'), (1, 'In Progress'), (2, 'Complete'))
+PRIORITY = ((0, 'Low'), (1, 'Medium'), (2, 'High'))
 
 
 class Task(models.Model):
-    board = models.ForeignKey(
-        Board, on_delete=models.CASCADE, related_name="tasks", default="1"
-    )
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='tasks', default='1')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -22,7 +20,8 @@ class Task(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
-        ordering = ["-created_at"]
+        ordering = ['-created_at']
 
     def __str__(self):
+
         return f"{self.owner}'s task"

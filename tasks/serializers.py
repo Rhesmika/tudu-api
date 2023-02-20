@@ -2,24 +2,26 @@ from rest_framework import serializers
 from tasks.models import Task
 from django.contrib.auth.models import User
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ("username",)
+
 
 class TaskSerializer(serializers.ModelSerializer):
-    owner = UserSerializer()
+    assigned_to = UserSerializer()
     is_owner = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context["request"]
-        return request.user == obj.owner
+        return request.user == obj.assigned_to
 
     class Meta:
         model = Task
         fields = [
             "id",
-            "owner",
+            "assigned_to",
             "created_at",
             "title",
             "description",

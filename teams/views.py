@@ -25,7 +25,6 @@ class TeamList(generics.ListCreateAPIView):
         "name",
         "board__name",
         "members__username",
-
     ]
     ordering_fields = ["name"]
 
