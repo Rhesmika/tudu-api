@@ -28,4 +28,5 @@ urlpatterns = [
     path("", include("tasks.urls")),
     path("", include("teams.urls")),
     path("", include("boards.urls")),
+
 ]
