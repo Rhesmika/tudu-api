@@ -15,4 +15,4 @@ class Board(models.Model):
 
     def __str__(self):
 
-        return f"{self.owner}'s task"
+        return f"{self.name}"

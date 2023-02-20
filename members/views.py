@@ -47,3 +47,10 @@ class MemberDetail(APIView):
         return Response(
             serializer.errors, status=status.HTTP_400_BAD_REQUEST
         )
+
+    def delete(self, request, pk):
+        member = self.get_object(pk)
+        member.delete()
+        return Response(
+            status=status.HTTP_204_NO_CONTENT
+        )

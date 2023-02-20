@@ -20,4 +20,4 @@ class Member(models.Model):
         unique_together = ['owner', 'team']
 
     def __str__(self):
-        return f'{self.owner} {self.team}'
+        return f'{self.owner} membership with {self.team}'

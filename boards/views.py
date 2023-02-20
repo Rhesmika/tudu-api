@@ -38,7 +38,7 @@ class BoardDetail(APIView):
     permission_classes = [
         permissions.IsAuthenticated
     ]
-
+    
     def get_object(self, pk):
         try:
             board = Board.objects.get(pk=pk)
