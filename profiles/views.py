@@ -1,10 +1,7 @@
-from rest_framework import status, permissions, generics
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import permissions, generics
 from .models import Profile
 from .serializers import ProfileSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
-from django.http import Http404
 
 
 class ProfileList(generics.ListCreateAPIView):
