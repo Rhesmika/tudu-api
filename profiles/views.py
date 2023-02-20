@@ -7,7 +7,7 @@ from tudu_api.permissions import IsOwnerOrReadOnly
 class ProfileList(generics.ListCreateAPIView):
     """
     List profiles or create a profile if logged in
-    The perform_create method associates the board with the logged in user.
+    The perform_create method associates the profile with the logged in user.
     """
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()

@@ -6,8 +6,8 @@ from tudu_api.permissions import IsOwnerOrReadOnly
 
 class TaskList(generics.ListCreateAPIView):
     """
-    List boards or create a post if logged in
-    The perform_create method associates the board with the logged in user.
+    Lists tasks or create a task if logged in
+    The perform_create method associates the task with the logged in user.
     """
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
@@ -18,7 +18,7 @@ class TaskList(generics.ListCreateAPIView):
 
 class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve a board and edit or delete it if you own it.
+    Retrieve a task and edit or delete it if you own it.
     """
     serializer_class = TaskSerializer
     permission_classes = [IsOwnerOrReadOnly]
