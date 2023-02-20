@@ -25,7 +25,8 @@ class TaskList(generics.ListCreateAPIView):
     filterset_fields = [
         'board',
         'board__team',
-        # 'priority=0',
+        'priority',
+        'status',
 
     ]
     search_fields = [
@@ -37,8 +38,7 @@ class TaskList(generics.ListCreateAPIView):
         'duedate',
         'title',
     ]
-            
-    
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
