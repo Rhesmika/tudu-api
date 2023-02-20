@@ -12,9 +12,17 @@ class BoardList(generics.ListCreateAPIView):
     """
     serializer_class = BoardSerializer
     queryset = Board.objects.annotate(
-        task_count=Count('tasks')
+        task_count=Count('tasks', distinct=True),
     ).order_by('-created_at')
     serializer_class = BoardSerializer
+
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+        'task_count',
+
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

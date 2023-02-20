@@ -1,4 +1,4 @@
-from rest_framework import permissions, generics
+from rest_framework import permissions, generics, filters
 from .models import Task
 from .serializers import TaskSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
@@ -12,6 +12,12 @@ class TaskList(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
 
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+            
+    ]
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
