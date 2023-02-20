@@ -18,11 +18,11 @@ class ProfileList(generics.ListCreateAPIView):
 
     filter_backends = [
         filters.OrderingFilter,
-        # filters.SearchFilter,
+        filters.SearchFilter,
     ]
-    # search_fields = [
-    #     'owner',
-    # ]
+    search_fields = [
+        'owner__username',
+    ]
     ordering_fields = [
         "owner",
     ]
