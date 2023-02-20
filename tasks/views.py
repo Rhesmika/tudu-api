@@ -1,7 +1,9 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions, generics, filters
 from .models import Task
 from .serializers import TaskSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
+
 
 
 class TaskList(generics.ListCreateAPIView):
@@ -17,6 +19,14 @@ class TaskList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+
+    filterset_fields = [
+        'board',
+        'board__team',
+        # 'priority=0',
+
     ]
     search_fields = [
         'title',
