@@ -17,10 +17,16 @@ class BoardList(generics.ListCreateAPIView):
     serializer_class = BoardSerializer
 
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        'name',
+        'tasks__title',
     ]
     ordering_fields = [
         'task_count',
+        'task__title',
 
     ]
 

@@ -14,11 +14,16 @@ class ProfileList(generics.ListCreateAPIView):
         owns_teams=Count('owner__team')
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
-
+    
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        # filters.SearchFilter,
     ]
-    ordering_fields = [        
+    # search_fields = [
+    #     'owner',
+    # ]
+    ordering_fields = [
+        'owner',
     ]
 
 

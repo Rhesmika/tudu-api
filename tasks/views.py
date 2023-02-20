@@ -15,7 +15,11 @@ class TaskList(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
 
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        'title',
     ]
     ordering_fields = [
         'priority',
