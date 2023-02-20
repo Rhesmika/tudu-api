@@ -18,7 +18,9 @@ class MemberList(generics.ListCreateAPIView):
 
 class MemberDetail(APIView):
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
     serializer_class = MemberSerializer
 
     def get_object(self, pk):
@@ -33,3 +35,15 @@ class MemberDetail(APIView):
         member = self.get_object(pk)
         serializer = MemberSerializer(member, context={'request': request})
         return Response(serializer.data)
+    
+    def put(self, request, pk):
+        member = self.get_object(pk)
+        serializer = MemberSerializer()(
+            member, data=request.data, context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )
