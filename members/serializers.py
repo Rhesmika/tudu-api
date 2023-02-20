@@ -9,5 +9,5 @@ class MemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Member
         fields = [
-            'id', 'created_at',  'owner', 'team',
+            'id', 'created_at',  'owner', 'team', 'status',
         ]

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from teams.models import Team
 
+STATUS = ((0, 'null'), (1, 'Requested'), (2, 'Accepted'),  (2, 'Declined'))
 
 class Member(models.Model):
 
@@ -10,6 +11,8 @@ class Member(models.Model):
     )
     team = models.ForeignKey(
         Team, related_name='membership', on_delete=models.CASCADE)
+    status = models.IntegerField(choices=STATUS, default=0)
+
 
     created_at = models.DateTimeField(auto_now_add=True)
 
