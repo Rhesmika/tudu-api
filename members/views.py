@@ -1,13 +1,14 @@
-from rest_framework import generics, permissions
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import permissions, generics
+from tudu_api.permissions import IsOwnerOrReadOnly
 from .models import Member
 from .serializers import MemberSerializer
-from tudu_api.permissions import IsOwnerOrReadOnly, IsAuthenticated
-from django.db.models import Count
 
 
 class MemberList(generics.ListCreateAPIView):
+    """
+    List memberships or create a membership if logged in
+    The perform_create method associates the membership with the logged in user.
+    """
     serializer_class = MemberSerializer
     queryset = Member.objects.all()
 
@@ -16,41 +17,10 @@ class MemberList(generics.ListCreateAPIView):
         return Response(serializer.data)
 
 
-class MemberDetail(APIView):
-
-    permission_classes = [
-        permissions.IsAuthenticated
-    ]
+class MemberDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve a membership and edit or delete it if you own it.
+    """
     serializer_class = MemberSerializer
-
-    def get_object(self, pk):
-        try:
-            member = Member.objects.get(pk=pk)
-            self.check_object_permissions(self.request, member)
-            return member
-        except Member.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        member = self.get_object(pk)
-        serializer = MemberSerializer(member, context={'request': request})
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        member = self.get_object(pk)
-        serializer = MemberSerializer()(
-            member, data=request.data, context={'request': request}
-        )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(
-            serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
-
-    def delete(self, request, pk):
-        member = self.get_object(pk)
-        member.delete()
-        return Response(
-            status=status.HTTP_204_NO_CONTENT
-        )
+    permission_classes = [IsOwnerOrReadOnly]
+    queryset = Member.objects.all()
