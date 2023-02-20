@@ -1,4 +1,5 @@
-from rest_framework import permissions, generics
+from django.db.models import Count
+from rest_framework import permissions, generics, filters
 from .models import Profile
 from .serializers import ProfileSerializer
 from tudu_api.permissions import IsOwnerOrReadOnly
@@ -9,8 +10,18 @@ class ProfileList(generics.ListCreateAPIView):
     List profiles or create a profile if logged in
     The perform_create method associates the profile with the logged in user.
     """
+    queryset = Profile.objects.annotate(
+        teams_count=Count('owner__team')
+    ).order_by('-created_at')
     serializer_class = ProfileSerializer
-    queryset = Profile.objects.all()
+
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+        'teams_count',
+    ]
+
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
