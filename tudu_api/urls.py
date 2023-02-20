@@ -23,6 +23,8 @@ urlpatterns = [
     path('', include('tasks.urls')),
     path('', include('teams.urls')),
     path('', include('boards.urls')),
+    path('', include('members.urls')),
+
 
 
 ]

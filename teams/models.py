@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+# from members.models import Member
 
 
 class Team(models.Model):
@@ -11,7 +12,7 @@ class Team(models.Model):
     image = models.ImageField(
         upload_to='images/', default='../default_team_mi0sbj.png'
     )
-    members = models.ManyToManyField(User, related_name='teams', default=None)
+    # members = models.ManyToManyField(Member, related_name='members', default=None)
 
     class Meta:
         ordering = ['-created_at']

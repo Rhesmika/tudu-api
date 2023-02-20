@@ -11,20 +11,21 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('teams', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Profile',
+            name='Member',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('image', models.ImageField(default='../default_user_zaxugw.png', upload_to='images/')),
-                ('owner', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='member', to=settings.AUTH_USER_MODEL)),
+                ('team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='membership', to='teams.team')),
             ],
             options={
                 'ordering': ['-created_at'],
+                'unique_together': {('owner', 'team')},
             },
         ),
     ]

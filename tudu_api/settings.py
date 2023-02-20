@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'tasks',
     'teams',
     'boards',
+    'members',
 ]
 
 MIDDLEWARE = [
