@@ -19,7 +19,12 @@ class TeamList(generics.ListCreateAPIView):
     serializer_class = TeamSerializer
 
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        'name',
+        'board__name',
     ]
     ordering_fields = [
         'name'
