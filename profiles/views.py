@@ -11,7 +11,7 @@ class ProfileList(generics.ListCreateAPIView):
     The perform_create method associates the profile with the logged in user.
     """
     queryset = Profile.objects.annotate(
-        teams_count=Count('owner__team')
+        owns_teams=Count('owner__team')
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
 
@@ -19,7 +19,7 @@ class ProfileList(generics.ListCreateAPIView):
         filters.OrderingFilter
     ]
     ordering_fields = [
-        'teams_count',
+        'owns_teams',
     ]
 
 
