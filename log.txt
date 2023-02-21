@@ -1,56 +1,175 @@
-Traceback (most recent call last):
-  File "/app/manage.py", line 22, in <module>
-    main()
-  File "/app/manage.py", line 18, in main
-    execute_from_command_line(sys.argv)
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/core/management/__init__.py", line 419, in execute_from_command_line
-    utility.execute()
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/core/management/__init__.py", line 395, in execute
-    django.setup()
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/__init__.py", line 24, in setup
-    apps.populate(settings.INSTALLED_APPS)
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/apps/registry.py", line 114, in populate
-    app_config.import_models()
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/apps/config.py", line 301, in import_models
-    self.models_module = import_module(models_module_name)
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/app/.heroku/python/lib/python3.11/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
-  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/contrib/auth/models.py", line 3, in <module>
-    from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/contrib/auth/base_user.py", line 48, in <module>
-    class AbstractBaseUser(models.Model):
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/db/models/base.py", line 122, in __new__
-    new_class.add_to_class('_meta', Options(meta, app_label))
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/db/models/base.py", line 326, in add_to_class
-    value.contribute_to_class(cls, name)
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/db/models/options.py", line 207, in contribute_to_class
-    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
-                                                 ^^^^^^^^^^^^^^
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/utils/connection.py", line 15, in __getattr__
-    return getattr(self._connections[self._alias], item)
-                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/utils/connection.py", line 62, in __getitem__
-    conn = self.create_connection(alias)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/db/utils.py", line 204, in create_connection
-    backend = load_backend(db['ENGINE'])
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/db/utils.py", line 111, in load_backend
-    return import_module('%s.base' % backend_name)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/app/.heroku/python/lib/python3.11/importlib/__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/app/.heroku/python/lib/python3.11/site-packages/django/db/backends/postgresql/base.py", line 25, in <module>
-    import psycopg2 as Database
-  File "/app/.heroku/python/lib/python3.11/site-packages/psycopg2/__init__.py", line 51, in <module>
-    from psycopg2._psycopg import (                     # noqa
-SystemError: initialization of _psycopg raised unreported exception
+ID a70150b6-080c-4fe4-b8ea-b7c776496f77
+-----> Building on the Heroku-22 stack
+-----> Using buildpack: heroku/python
+-----> Python app detected
+-----> No Python version was specified. Using the same version as the last build: python-3.11.2
+       To use a different version, see: https://devcenter.heroku.com/articles/python-runtimes
+-----> Requirements file has been changed, clearing cached dependencies
+-----> Installing python-3.11.2
+-----> Installing pip 23.0.1, setuptools 63.4.3 and wheel 0.38.4
+-----> Installing SQLite3
+-----> Installing requirements with pip
+       Collecting asgiref==3.6.0
+         Downloading asgiref-3.6.0-py3-none-any.whl (23 kB)
+       Collecting backports.zoneinfo==0.2.1
+         Downloading backports.zoneinfo-0.2.1.tar.gz (74 kB)
+         Installing build dependencies: started
+         Installing build dependencies: finished with status 'done'
+         Getting requirements to build wheel: started
+         Getting requirements to build wheel: finished with status 'done'
+         Preparing metadata (pyproject.toml): started
+         Preparing metadata (pyproject.toml): finished with status 'done'
+       Collecting black==23.1.0
+         Downloading black-23.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.6 MB)
+       Collecting click==8.1.3
+         Downloading click-8.1.3-py3-none-any.whl (96 kB)
+       Collecting cloudinary==1.31.0
+         Downloading cloudinary-1.31.0.tar.gz (169 kB)
+         Preparing metadata (setup.py): started
+         Preparing metadata (setup.py): finished with status 'done'
+       Collecting dj-database-url==0.5.0
+         Downloading dj_database_url-0.5.0-py2.py3-none-any.whl (5.5 kB)
+       Collecting dj-rest-auth==3.0.0
+         Downloading dj-rest-auth-3.0.0.tar.gz (100 kB)
+         Preparing metadata (setup.py): started
+         Preparing metadata (setup.py): finished with status 'done'
+       Collecting Django==4.1.6
+         Downloading Django-4.1.6-py3-none-any.whl (8.1 MB)
+       Collecting django-allauth==0.52.0
+         Downloading django-allauth-0.52.0.tar.gz (728 kB)
+         Preparing metadata (setup.py): started
+         Preparing metadata (setup.py): finished with status 'done'
+       Collecting django-cloudinary-storage==0.3.0
+         Downloading django_cloudinary_storage-0.3.0-py3-none-any.whl (18 kB)
+       Collecting django-cors-headers==3.13.0
+         Downloading django_cors_headers-3.13.0-py3-none-any.whl (13 kB)
+       Collecting django-filter==22.1
+         Downloading django_filter-22.1-py3-none-any.whl (80 kB)
+       Collecting djangorestframework==3.14.0
+         Downloading djangorestframework-3.14.0-py3-none-any.whl (1.1 MB)
+       Collecting djangorestframework-simplejwt==5.2.2
+         Downloading djangorestframework_simplejwt-5.2.2-py3-none-any.whl (85 kB)
+       Collecting gunicorn==20.1.0
+         Downloading gunicorn-20.1.0-py3-none-any.whl (79 kB)
+       Collecting oauthlib==3.2.2
+         Downloading oauthlib-3.2.2-py3-none-any.whl (151 kB)
+       Collecting pathspec==0.11.0
+         Downloading pathspec-0.11.0-py3-none-any.whl (29 kB)
+       Collecting Pillow==9.4.0
+         Downloading Pillow-9.4.0-cp311-cp311-manylinux_2_28_x86_64.whl (3.4 MB)
+       Collecting psycopg2==2.9.5
+         Downloading psycopg2-2.9.5.tar.gz (384 kB)
+         Preparing metadata (setup.py): started
+         Preparing metadata (setup.py): finished with status 'done'
+       Collecting PyJWT==2.6.0
+         Downloading PyJWT-2.6.0-py3-none-any.whl (20 kB)
+       Collecting python3-openid==3.2.0
+         Downloading python3_openid-3.2.0-py3-none-any.whl (133 kB)
+       Collecting pytz==2022.7.1
+         Downloading pytz-2022.7.1-py2.py3-none-any.whl (499 kB)
+       Collecting requests-oauthlib==1.3.1
+         Downloading requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+       Collecting sqlparse==0.4.3
+         Downloading sqlparse-0.4.3-py3-none-any.whl (42 kB)
+       Collecting mypy-extensions>=0.4.3
+         Downloading mypy_extensions-1.0.0-py3-none-any.whl (4.7 kB)
+       Collecting packaging>=22.0
+         Downloading packaging-23.0-py3-none-any.whl (42 kB)
+       Collecting platformdirs>=2
+         Downloading platformdirs-3.0.0-py3-none-any.whl (14 kB)
+       Collecting six
+         Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+       Collecting urllib3<2,>=1.26.5
+         Downloading urllib3-1.26.14-py2.py3-none-any.whl (140 kB)
+       Collecting certifi
+         Downloading certifi-2022.12.7-py3-none-any.whl (155 kB)
+       Collecting requests
+         Downloading requests-2.28.2-py3-none-any.whl (62 kB)
+       Collecting defusedxml
+         Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+       Collecting cryptography>=3.4.0
+         Downloading cryptography-39.0.1-cp36-abi3-manylinux_2_28_x86_64.whl (4.2 MB)
+       Collecting charset-normalizer<4,>=2
+         Downloading charset_normalizer-3.0.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (196 kB)
+       Collecting idna<4,>=2.5
+         Downloading idna-3.4-py3-none-any.whl (61 kB)
+       Collecting cffi>=1.12
+         Downloading cffi-1.15.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (462 kB)
+       Collecting pycparser
+         Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
+       Building wheels for collected packages: backports.zoneinfo, cloudinary, dj-rest-auth, django-allauth, psycopg2
+         Building wheel for backports.zoneinfo (pyproject.toml): started
+         Building wheel for backports.zoneinfo (pyproject.toml): finished with status 'error'
+         error: subprocess-exited-with-error
+         
+         × Building wheel for backports.zoneinfo (pyproject.toml) did not run successfully.
+         │ exit code: 1
+         ╰─> [43 lines of output]
+             /tmp/pip-build-env-plh0phwp/overlay/lib/python3.11/site-packages/setuptools/config/setupcfg.py:520: SetuptoolsDeprecationWarning: The license_file parameter is deprecated, use license_files instead.
+               warnings.warn(msg, warning_class)
+             running bdist_wheel
+             running build
+             running build_py
+             creating build
+             creating build/lib.linux-x86_64-cpython-311
+             creating build/lib.linux-x86_64-cpython-311/backports
+             copying src/backports/__init__.py -> build/lib.linux-x86_64-cpython-311/backports
+             creating build/lib.linux-x86_64-cpython-311/backports/zoneinfo
+             copying src/backports/zoneinfo/__init__.py -> build/lib.linux-x86_64-cpython-311/backports/zoneinfo
+             copying src/backports/zoneinfo/_tzpath.py -> build/lib.linux-x86_64-cpython-311/backports/zoneinfo
+             copying src/backports/zoneinfo/_zoneinfo.py -> build/lib.linux-x86_64-cpython-311/backports/zoneinfo
+             copying src/backports/zoneinfo/_common.py -> build/lib.linux-x86_64-cpython-311/backports/zoneinfo
+             copying src/backports/zoneinfo/_version.py -> build/lib.linux-x86_64-cpython-311/backports/zoneinfo
+             running egg_info
+             writing src/backports.zoneinfo.egg-info/PKG-INFO
+             writing dependency_links to src/backports.zoneinfo.egg-info/dependency_links.txt
+             writing requirements to src/backports.zoneinfo.egg-info/requires.txt
+             writing top-level names to src/backports.zoneinfo.egg-info/top_level.txt
+             reading manifest file 'src/backports.zoneinfo.egg-info/SOURCES.txt'
+             reading manifest template 'MANIFEST.in'
+             warning: no files found matching '*.png' under directory 'docs'
+             warning: no files found matching '*.svg' under directory 'docs'
+             no previously-included directories found matching 'docs/_build'
+             no previously-included directories found matching 'docs/_output'
+             adding license file 'LICENSE'
+             adding license file 'licenses/LICENSE_APACHE'
+             writing manifest file 'src/backports.zoneinfo.egg-info/SOURCES.txt'
+             copying src/backports/zoneinfo/__init__.pyi -> build/lib.linux-x86_64-cpython-311/backports/zoneinfo
+             copying src/backports/zoneinfo/py.typed -> build/lib.linux-x86_64-cpython-311/backports/zoneinfo
+             running build_ext
+             building 'backports.zoneinfo._czoneinfo' extension
+             creating build/temp.linux-x86_64-cpython-311
+             creating build/temp.linux-x86_64-cpython-311/lib
+             gcc -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/app/.heroku/python/include/python3.11 -c lib/zoneinfo_module.c -o build/temp.linux-x86_64-cpython-311/lib/zoneinfo_module.o -std=c99
+             lib/zoneinfo_module.c: In function ‘zoneinfo_fromutc’:
+             lib/zoneinfo_module.c:600:19: error: ‘_PyLong_One’ undeclared (first use in this function); did you mean ‘_PyLong_New’?
+               600 |             one = _PyLong_One;
+                   |                   ^~~~~~~~~~~
+                   |                   _PyLong_New
+             lib/zoneinfo_module.c:600:19: note: each undeclared identifier is reported only once for each function it appears in
+             error: command '/usr/bin/gcc' failed with exit code 1
+             [end of output]
+         
+         note: This error originates from a subprocess, and is likely not a problem with pip.
+         ERROR: Failed building wheel for backports.zoneinfo
+         Building wheel for cloudinary (setup.py): started
+         Building wheel for cloudinary (setup.py): finished with status 'done'
+         Created wheel for cloudinary: filename=cloudinary-1.31.0-py3-none-any.whl size=136238 sha256=81d031678472d76573abbcf04a13b79bc035a958b017361672e9c8c7aa4ab260
+         Stored in directory: /tmp/pip-ephem-wheel-cache-ww2f30j4/wheels/96/09/55/9192599d246e586764be1a683acd325b7defe8db7bb6046028
+         Building wheel for dj-rest-auth (setup.py): started
+         Building wheel for dj-rest-auth (setup.py): finished with status 'done'
+         Created wheel for dj-rest-auth: filename=dj_rest_auth-3.0.0-py2.py3-none-any.whl size=155052 sha256=80691094dd38f1b5cd526a5d4209e2ad7068c56abb11718fc1b32be53788693e
+         Stored in directory: /tmp/pip-ephem-wheel-cache-ww2f30j4/wheels/16/60/c8/bc35fd0e3cbbb256ae44943d11713f04cebe7ee400d1040dc5
+         Building wheel for django-allauth (setup.py): started
+         Building wheel for django-allauth (setup.py): finished with status 'done'
+         Created wheel for django-allauth: filename=django_allauth-0.52.0-py3-none-any.whl size=1063914 sha256=2b08ed780162ade18a9f6a11c960946d1d00469548fd2d9d09c826bd94fcfe43
+         Stored in directory: /tmp/pip-ephem-wheel-cache-ww2f30j4/wheels/e1/c8/ca/7e4be574a46605642219627189c7a61527cedbf04f507b0b06
+         Building wheel for psycopg2 (setup.py): started
+         Building wheel for psycopg2 (setup.py): finished with status 'done'
+         Created wheel for psycopg2: filename=psycopg2-2.9.5-cp311-cp311-linux_x86_64.whl size=159948 sha256=6b3bf7b9b49b9230fd29fe0d800bba31315a26bdbc6dc5a9dc05e5dfc9e7aa52
+         Stored in directory: /tmp/pip-ephem-wheel-cache-ww2f30j4/wheels/41/69/c6/3d0a28861cf363402eab31679904dc0abba976d9d1c8810631
+       Successfully built cloudinary dj-rest-auth django-allauth psycopg2
+       Failed to build backports.zoneinfo
+       ERROR: Could not build wheels for backports.zoneinfo, which is required to install pyproject.toml-based projects
+ !     Push rejected, failed to compile Python app.
+ !     Push failed
