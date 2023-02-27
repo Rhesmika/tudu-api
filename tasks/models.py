@@ -8,11 +8,11 @@ PRIORITY = ((0, "Low"), (1, "Medium"), (2, "High"))
 
 
 class Task(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
     board = models.ForeignKey(
         Board, on_delete=models.CASCADE, related_name="tasks", default="1"
     )
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True)

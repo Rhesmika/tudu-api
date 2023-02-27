@@ -13,9 +13,8 @@ class BoardList(generics.ListCreateAPIView):
 
     serializer_class = BoardSerializer
     queryset = Board.objects.annotate(
-        task_count=Count("tasks", distinct=True),
+        tasks_count=Count("tasks", distinct=True),
     ).order_by("-created_at")
-    serializer_class = BoardSerializer
 
     filter_backends = [
         filters.OrderingFilter,
@@ -26,8 +25,8 @@ class BoardList(generics.ListCreateAPIView):
         "tasks__title",
     ]
     ordering_fields = [
-        "task_count",
-        "task__title",
+        "tasks_count",
+        "tasks__title",
     ]
 
     def perform_create(self, serializer):
@@ -42,5 +41,5 @@ class BoardDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BoardSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Board.objects.annotate(
-        task_count=Count("tasks", distinct=True),
+        tasks_count=Count("tasks", distinct=True),
     ).order_by("-created_at")
