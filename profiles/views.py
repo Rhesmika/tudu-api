@@ -11,8 +11,8 @@ class ProfileList(generics.ListCreateAPIView):
     The perform_create method associates the profile with the logged in user.
     """
 
-
     serializer_class = ProfileSerializer
+    queryset = Profile.objects.all().order_by("-created_at")
 
     filter_backends = [
         filters.OrderingFilter,
