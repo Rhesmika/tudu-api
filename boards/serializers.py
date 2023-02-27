@@ -11,6 +11,5 @@ class BoardSerializer(serializers.ModelSerializer):
             "id",
             "created_at",
             "name",
-            "team",
             "task_count",
         ]

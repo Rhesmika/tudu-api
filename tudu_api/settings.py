@@ -92,7 +92,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "profiles",
     "tasks",
-    "teams",
     "boards",
 ]
 
