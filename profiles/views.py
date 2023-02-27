@@ -36,4 +36,5 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
 
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
+    queryset = Profile.objects.all().order_by("-created_at")
 
