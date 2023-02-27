@@ -66,7 +66,7 @@ ALLOWED_HOSTS = [
     os.environ.get("ALLOWED_HOST"),
     "localhost",
 ]
-CSRF_TRUSTED_ORIGINS = ["https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu87.gitpod.io"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu88.gitpod.io"]
 
 
 # Application definition

@@ -23,7 +23,6 @@ class TaskList(generics.ListCreateAPIView):
 
     filterset_fields = [
         "board",
-        "board__team",
         "priority",
         "status",
     ]
