@@ -13,7 +13,7 @@ class BoardList(generics.ListCreateAPIView):
 
     serializer_class = BoardSerializer
 
-    queryset = qs.annotate(
+    queryset = queryset.annotate(
         tasks_count=Count("tasks", distinct=True),
     ).order_by("-created_at")
 
