@@ -1,6 +1,6 @@
 from django.db.models import Count
 from rest_framework import permissions, generics, filters
-from tudu_api.permissions import IsOwnerOrReadOnly
+from tudu_api.permissions import IsOwner
 from .models import Board
 from .serializers import BoardSerializer
 
@@ -12,7 +12,7 @@ class BoardList(generics.ListCreateAPIView):
     """
 
     serializer_class = BoardSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwner]
 
     queryset = Board.objects.annotate(
         tasks_count=Count("tasks", distinct=True),
@@ -41,7 +41,7 @@ class BoardDetail(generics.RetrieveUpdateDestroyAPIView):
     """
 
     serializer_class = BoardSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwner]
     queryset = Board.objects.annotate(
         tasks_count=Count("tasks", distinct=True),
     ).order_by("-created_at")
