@@ -10,7 +10,7 @@ PRIORITY = ((0, "Low"), (1, "Medium"), (2, "High"))
 class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     board = models.ForeignKey(
-        Board, on_delete=models.CASCADE, related_name="tasks", default="1"
+        Board, on_delete=models.CASCADE, related_name="tasks"
     )
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     updated_at = models.DateTimeField(auto_now=True)
