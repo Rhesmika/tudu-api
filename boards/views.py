@@ -32,7 +32,7 @@ class BoardList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(owner=self.request.user, name=self.request.POST.get('name', ''))
 
 
 class BoardDetail(generics.RetrieveUpdateDestroyAPIView):
