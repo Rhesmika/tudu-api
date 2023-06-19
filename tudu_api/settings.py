@@ -63,9 +63,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = "DEBUG" in os.environ
 
 ALLOWED_HOSTS = [
-    os.environ.get("ALLOWED_HOSTS"),
-    "localhost",
+    os.environ.get("ALLOWED_HOST"),
+    "localhost", '8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu100.gitpod.io'
 ]
+
 CSRF_TRUSTED_ORIGINS = ["https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu100.gitpod.io"]
 
 
@@ -106,6 +107,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 if "CLIENT_ORIGIN_DEV" in os.environ:
     extracted_url = re.match(
         r"^.+-", os.environ.get("CLIENT_ORIGIN_DEV", ""), re.IGNORECASE
@@ -117,6 +119,7 @@ else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         r"^https://.*\.gitpod\.io$",
     ]
+    
 CORS_ALLOW_CREDENTIALS = True
 
 
