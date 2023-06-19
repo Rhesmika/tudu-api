@@ -63,10 +63,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = "DEBUG" in os.environ
 
 ALLOWED_HOSTS = [
-    os.environ.get("ALLOWED_HOST"),
+    os.environ.get("ALLOWED_HOSTS"),
     "localhost",
 ]
-CSRF_TRUSTED_ORIGINS = ["https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-us97.gitpod.io"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu100.gitpod.io"]
 
 
 
