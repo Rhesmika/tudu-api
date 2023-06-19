@@ -63,7 +63,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = "DEBUG" in os.environ
 
 ALLOWED_HOSTS = [
-    os.environ.get("ALLOWED_HOST"),
+    os.environ.get("ALLOWED_HOSTS"),
     "localhost", '8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu100.gitpod.io'
 ]
 
