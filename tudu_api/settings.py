@@ -67,8 +67,8 @@ ALLOWED_HOSTS = [
     "localhost", '8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu103.gitpod.io'
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu100.gitpod.io", 
-'https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu103.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu103.gitpod.io',
+'https://tudu.herokuapp.com']
 
 
 
@@ -109,16 +109,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-if "CLIENT_ORIGIN_DEV" in os.environ:
-    extracted_url = re.match(
-        r"^.+-", os.environ.get("CLIENT_ORIGIN_DEV", ""), re.IGNORECASE
-    ).group(0)
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+         os.environ.get('CLIENT_ORIGIN')
+     ]
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
     CORS_ALLOWED_ORIGIN_REGEXES = [
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
-    ]
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
     ]
 
 CORS_ALLOW_CREDENTIALS = True
