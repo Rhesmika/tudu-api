@@ -3,7 +3,6 @@ from boards.models import Board
 
 
 class BoardSerializer(serializers.ModelSerializer):
-    name = serializers.SerializerMethodField()
     tasks_count = serializers.ReadOnlyField()
     owner = serializers.ReadOnlyField(source="owner.username")
     is_owner = serializers.SerializerMethodField()
