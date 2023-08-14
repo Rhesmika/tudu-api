@@ -64,7 +64,7 @@ DEBUG = "DEBUG" in os.environ
 
 ALLOWED_HOSTS = [
     os.environ.get("ALLOWED_HOSTS"),
-    "localhost", '8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu100.gitpod.io'
+    "localhost", '8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu103.gitpod.io'
 ]
 
 CSRF_TRUSTED_ORIGINS = ["https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu100.gitpod.io"]
@@ -119,7 +119,7 @@ else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         r"^https://.*\.gitpod\.io$",
     ]
-    
+
 CORS_ALLOW_CREDENTIALS = True
 
 
