@@ -64,10 +64,10 @@ DEBUG = "DEBUG" in os.environ
 
 ALLOWED_HOSTS = [
     os.environ.get("ALLOWED_HOSTS"),
-    "localhost", '8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu103.gitpod.io'
+    "localhost", '8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu104.gitpod.io'
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu103.gitpod.io',
+CSRF_TRUSTED_ORIGINS = ['https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu104.gitpod.io',
 'https://tudu.herokuapp.com']
 
 
