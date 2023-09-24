@@ -88,6 +88,12 @@ Filtering available:
 + +Field Filters for Board, Priority and Status
 <img width="475" alt="image" src="https://github.com/Rhesmika/tudu-api/assets/100621349/63aebcf4-69bf-45c2-86eb-5a991ccb5136">
 
+#### Create Items
+The list views allow items to be created and added to the list. 
+![Screenshot 2023-09-24 at 22 25 12](https://github.com/Rhesmika/tudu-api/assets/100621349/8ef9a78b-f391-4567-85a5-6c077c9556bf)
+![Screenshot 2023-09-24 at 22 25 32](https://github.com/Rhesmika/tudu-api/assets/100621349/25ebade9-3586-4da4-8c38-f4db610278c6)
+You will seeon the task form that some data is pre-populated. The board is assigned automatically on the front end however on the API, a default was required when building the API. 
+
 
 #### Detail Views
 Each item submission for a profile, task and board can be accessed by adding the 'id' to the link.. ie
@@ -98,5 +104,15 @@ Each item submission for a profile, task and board can be accessed by adding the
 ![Screenshot 2023-09-24 at 22 21 37](https://github.com/Rhesmika/tudu-api/assets/100621349/c0f47fee-210a-45cc-9800-33ba2181a7aa)
 ![Screenshot 2023-09-24 at 22 21 47](https://github.com/Rhesmika/tudu-api/assets/100621349/1d35081f-4d2c-4829-802f-42fe83ec1cc6)
 ![Screenshot 2023-09-24 at 22 21 25](https://github.com/Rhesmika/tudu-api/assets/100621349/75c1cd77-f71a-40e1-b73d-69de0afba76a)
+<img width="449" alt="Screenshot 2023-09-24 at 22 23 10" src="https://github.com/Rhesmika/tudu-api/assets/100621349/76a4c467-7dc3-4e81-9ff3-c8fe59c2495b">
+
+### Workfow 
+
+The Agile Workflow was used in the development of this project. The project was broken down into small tasks and then add development was possible, more features have oppertunity for development. 
+As mentioned above, the project was managed using user stories to track the CRUD abilities fo the datatbase. 
+![Screenshot 2023-09-24 at 22 29 08](https://github.com/Rhesmika/tudu-api/assets/100621349/fbe2078a-41c5-4cf0-ad45-6d06628778e4)
+ Documenting which issues and tasks were 'must do' 'should do' and 'could do' were not documented within the issues however was heavily considered while developing. The removal of the teams feature is a clear example of this. In future, issues created will be tagged to better see the developmental process. 
+
+On reflection, the detail put into each 'issue' in the project listed int he screenshot above could have been much improved. I could have added issues related to the filtering, serializers, and planning documents.  I also could have made better use of the tags that can be applied for each issue and logged me progress by applying tags for problems i was having to better keep track of the development of the API and how items relate when developing the front end. 
 
 
