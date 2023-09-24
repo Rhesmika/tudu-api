@@ -115,4 +115,9 @@ As mentioned above, the project was managed using user stories to track the CRUD
 
 On reflection, the detail put into each 'issue' in the project listed int he screenshot above could have been much improved. I could have added issues related to the filtering, serializers, and planning documents.  I also could have made better use of the tags that can be applied for each issue and logged me progress by applying tags for problems i was having to better keep track of the development of the API and how items relate when developing the front end. 
 
+### Tests 
+Manual test were carried out against Behaviour Driver Development. 
+The tests were documented on this document. 
+[API Tests.pdf](https://github.com/Rhesmika/tudu-api/files/12709783/API.Tests.pdf)
+
 
