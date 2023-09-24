@@ -120,4 +120,34 @@ Manual test were carried out against Behaviour Driver Development.
 The tests were documented on this document. 
 [API Tests.pdf](https://github.com/Rhesmika/tudu-api/files/12709783/API.Tests.pdf)
 
+### Validation
+The problems that are held in the code are related to the line length being too long.  The line break point has not been altered due to the readability of the code. 
+<img width="514" alt="Screenshot 2023-09-24 at 23 30 41" src="https://github.com/Rhesmika/tudu-api/assets/100621349/7fdfd515-6f62-42e0-9cb8-7193851e16b4">
+The other problem noted is realted to isort which can be addressed at a later date. 
 
+### Deployment 
+Technology used includes:
++ Cloudinary for the storage of images and files
++ ElephantSQL for the PostgreSQL server database
++ Pillow which processes images
+
+Project was initally produced using the CI template
++ Installed Django, Cloudinary and Pillow & added the settings
++ Added env file and added variables for cloudinary, and secret keys
++ Add details to the insalled apps
++ Prep Deployed to heroku
++ Create Heroku App
++ Link the Github repositary and connect to main
++ Add the Postgres
++ Add config Vars: CLoudinary, Secret Key & Elephant SQL
++ Add these values to the env.py file in Github Repositary
++ Update Repositary Settings file
++ Created ElephantSQL database and added urls to heroku and back end
++ Deploy app in Heroku
+
+### Credits
+When developing the issues i had to foreign keys and user models
+https://stackoverflow.com/questions/27995218/django-store-list-of-users-in-model
+
+When developing the model and views for the file attachment for the taks. 
+https://www.youtube.com/watch?v=Rr1-UTFCuH4&t=6s
