@@ -1,4 +1,4 @@
-<img width="475" alt="image" src="https://github.com/Rhesmika/tudu-api/assets/100621349/37f7550e-9d59-4a3e-8ac7-e72f830d0e65"># Tudu - Back End - API
+# Tudu - Back End - API
 
 Tudu is a task management website where users can catagorise, track and update their tasks.Tudu hopes to help users to bring digital organisation to their lives. 
 
