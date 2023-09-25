@@ -1,6 +1,6 @@
 # Tudu - Back End - API
 
-Tudu is a task management website where users can catagorise, track and update their tasks.Tudu hopes to help users to bring digital organisation to their lives. 
+Tudu is a task management website where users can catagorise, track and update their tasks. Tudu hopes to help users to bring digital organisation to their lives. 
 
 The goal is to ensure users can:
 - Signup/Login and view data that only they can see
@@ -41,22 +41,22 @@ The development of the website was managed by user stories to track the progress
 + Board - Delete Team
 + Board - Edit Board
 
-To simplify the project, the teams were removed from the project and are considered to be a development oppertunity in the future. 
+To simplify the project, the teams were removed from the project and are considered to be a development opportunity in the future. 
 
 ### Models
 In planning for the api, the models were mapped externally. 
 [Datafields.pdf](https://github.com/Rhesmika/tudu-api/files/12709630/Datafields.pdf)
 
-The Task and Board are link via a foreign key. The development process of the models caused issues in the API. Testing occured throughout development,  and adding / removing Foreign keys meant the API database required to be reset. 
-The Task model was constructed so that many tasks can be assigned to one board. This model collects all the information about a task including the title, desctiption, due date,, priority, status. The user can also include an attachment to their task which is stored in cloudinary.
-The Board model was constructued so that many boards can be owned by a user. Tasks are assigned to a board which can be individually named for a better user experience. 
+The Task and Board are linked via a Foreign Key. The development process of the models caused issues in the API. Testing occured throughout development,  and adding / removing Foreign Keys meant the API database required to be reset. 
+The Task model was constructed so that many tasks can be assigned to one board. This model collects all the information about a task including the title, description, due date, priority, and status. The user can also include an attachment to their task which is stored in Cloudinary.
+The Board model was constructed so that many boards can be owned by a user. Tasks are assigned to a board which can be individually named for a better user experience. 
 Profiles are automatically created upon user creation and have the ability to update the profile image automatically assigned. 
 Teams was withdrawn from the project but has developmental oppertunities in the future. This model would allow for board and task collaboration and even task assignment 
 
 ### CRUD 
 In planning for the API, the CRUD methods were mapped externally.  (Teams were removed from the pdf)
 [crud tables.pdf](https://github.com/Rhesmika/tudu-api/files/12709647/crud.tables.pdf)
-The CRUD abilities of the API means that the user will be able to view, edit and delete all their boards, all their tasks and edit their profiles. 
+The CRUD abilities of the API means that the user will be able to view, edit and delete all their boards and tasks, and edit their profiles. 
 
 #### List Views
 The API displays lists of all the models inputs and offers filtering. 
@@ -83,7 +83,7 @@ The Task list view is accessed via "/tasks"
 <img width="922" alt="Screenshot 2023-09-24 at 21 58 17" src="https://github.com/Rhesmika/tudu-api/assets/100621349/f4ee3fee-eff7-48d9-acc7-297ec2f90664">
 
 Filtering available:
-+ Ordering by Priority, Status, duedate and title
++ Ordering by Priority, Status, due date and title
 + Search for titles
 + +Field Filters for Board, Priority and Status
 <img width="475" alt="image" src="https://github.com/Rhesmika/tudu-api/assets/100621349/63aebcf4-69bf-45c2-86eb-5a991ccb5136">
@@ -106,14 +106,14 @@ Each item submission for a profile, task and board can be accessed by adding the
 ![Screenshot 2023-09-24 at 22 21 25](https://github.com/Rhesmika/tudu-api/assets/100621349/75c1cd77-f71a-40e1-b73d-69de0afba76a)
 <img width="449" alt="Screenshot 2023-09-24 at 22 23 10" src="https://github.com/Rhesmika/tudu-api/assets/100621349/76a4c467-7dc3-4e81-9ff3-c8fe59c2495b">
 
-### Workfow 
+### Workflow 
 
-The Agile Workflow was used in the development of this project. The project was broken down into small tasks and then add development was possible, more features have oppertunity for development. 
+The Agile Workflow was used in the development of this project. The project was broken down into small tasks and then add development was possible, more features have opportunity for development. 
 As mentioned above, the project was managed using user stories to track the CRUD abilities fo the datatbase. 
 ![Screenshot 2023-09-24 at 22 29 08](https://github.com/Rhesmika/tudu-api/assets/100621349/fbe2078a-41c5-4cf0-ad45-6d06628778e4)
  Documenting which issues and tasks were 'must do' 'should do' and 'could do' were not documented within the issues however was heavily considered while developing. The removal of the teams feature is a clear example of this. In future, issues created will be tagged to better see the developmental process. 
 
-On reflection, the detail put into each 'issue' in the project listed int he screenshot above could have been much improved. I could have added issues related to the filtering, serializers, and planning documents.  I also could have made better use of the tags that can be applied for each issue and logged me progress by applying tags for problems i was having to better keep track of the development of the API and how items relate when developing the front end. 
+On reflection, the detail put into each 'issue' in the project listed in the screenshot above could have been much improved. I could have added issues related to the filtering, serializers, and planning documents.  I also could have made better use of the tags that can be applied for each issue and logged me progress by applying tags for problems that I was having to better keep track of the development of the API and how items relate when developing the front end. 
 
 ### Tests 
 Manual test were carried out against Behaviour Driver Development. 
@@ -134,7 +134,7 @@ Technology used includes:
 Project was initally produced using the CI template
 + Installed Django, Cloudinary and Pillow & added the settings
 + Added env file and added variables for cloudinary, and secret keys
-+ Add details to the insalled apps
++ Add details to the installed apps
 + Prep Deployed to heroku
 + Create Heroku App
 + Link the Github repositary and connect to main
@@ -146,7 +146,7 @@ Project was initally produced using the CI template
 + Deploy app in Heroku
 
 ### Credits
-When developing the issues i had to foreign keys and user models
+When developing the issues I had to foreign keys and user models
 https://stackoverflow.com/questions/27995218/django-store-list-of-users-in-model
 
 When developing the model and views for the file attachment for the taks. 
