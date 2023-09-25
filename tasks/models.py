@@ -18,7 +18,7 @@ class Task(models.Model):
     description = models.TextField(max_length=500, blank=True)
     attachment = models.FileField(null=True, blank=True)
     duedate = models.DateField(null=True, blank=True)
-    priority = models.IntegerField(choices=PRIORITY, default=0 )
+    priority = models.IntegerField(choices=PRIORITY, default=0)
     status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:

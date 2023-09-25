@@ -67,9 +67,7 @@ ALLOWED_HOSTS = [
     "localhost", '8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu104.gitpod.io'
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu104.gitpod.io',
-'https://tudu.herokuapp.com']
-
+CSRF_TRUSTED_ORIGINS = ['https://8000-rhesmika-tuduapi-wzmbjhfp100.ws-eu104.gitpod.io', 'https://tudu.herokuapp.com']
 
 
 # Application definition
