@@ -151,3 +151,8 @@ https://stackoverflow.com/questions/27995218/django-store-list-of-users-in-model
 
 When developing the model and views for the file attachment for the taks. 
 https://www.youtube.com/watch?v=Rr1-UTFCuH4&t=6s
+
+### Admin Credentials 
+User: Admin
+Passwork: Admin123
+
